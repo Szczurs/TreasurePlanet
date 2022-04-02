@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CannonballAutoDestroy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float delay = 10.0f; //This impiles a delay of 2 seconds.
 
-    // Update is called once per frame
-    void Update()
+ void Start()
+ {
+     StartCoroutine(SelfDestruct());
+ }
+
+    IEnumerator SelfDestruct()
     {
-        
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 }
