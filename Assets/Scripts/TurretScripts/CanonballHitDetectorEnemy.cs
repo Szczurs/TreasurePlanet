@@ -8,6 +8,8 @@ public class CanonballHitDetectorEnemy : MonoBehaviour
     //public float raycastLength = 100f;
     public float distanceToTarget;
 
+    public int damage = 10;
+
     public float proximityFuseExplosion = 10f;
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,18 @@ public class CanonballHitDetectorEnemy : MonoBehaviour
         
         RaycastHit hit;
         */
-
-        distanceToTarget = Vector3.Distance(mainPlayer.position, transform.position);
-        if(distanceToTarget < proximityFuseExplosion)
+        if(mainPlayer != null)
         {
-            Debug.Log("Player hit proximity fuse");
-            mainPlayer.GetComponent<ShipHealth>().dealDamage(1);
+            distanceToTarget = Vector3.Distance(mainPlayer.position, transform.position);
+            if(distanceToTarget < proximityFuseExplosion)
+            {
+                Debug.Log("Player hit proximity fuse");
+                mainPlayer.GetComponent<ShipHealth>().dealDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
             Destroy(gameObject);
         }
 
