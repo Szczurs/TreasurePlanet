@@ -12,6 +12,24 @@ public class Turret : MonoBehaviour
 
     public float maxRange = 100;
 
+    bool isDirectlyVisible()
+    {
+        RaycastHit hit;
+
+        if(Vector3.Distance(transform.position, target.position) < maxRange)
+        {
+            if(Physics.Raycast(transform.position, (target.position - transform.position), out hit,maxRange))
+            {
+                if(hit.transform == target)
+                {
+                    //enemy can see the player
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
@@ -27,7 +45,7 @@ public class Turret : MonoBehaviour
             var hardpoint = mountPoint.transform;
             var from = Quaternion.AngleAxis(-mountPoint.angleLimit / 2, hardpoint.up) * hardpoint.forward;
             var projection = Vector3.ProjectOnPlane(target.position - hardpoint.position, hardpoint.up);
-            if(projection.magnitude < maxRange){
+            if(isDirectlyVisible()){
                 // projection line
                 Handles.color = Color.white;
                 Handles.DrawDottedLine(target.position, hardpoint.position + projection, dashLineSize);
@@ -67,7 +85,7 @@ public class Turret : MonoBehaviour
         }
 
         // shoot when aimed
-        if (aimed && distanceToTarget<maxRange)
+        if (aimed && isDirectlyVisible())
         {
             gun.Fire();
         }
