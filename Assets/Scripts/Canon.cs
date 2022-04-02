@@ -28,12 +28,12 @@ public class Canon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKey(KeyCode.G))
         {
             ShootCannonBall();
         }
 
-        if(Input.GetKeyUp(KeyCode.R))
+        if(Input.GetKey(KeyCode.R))
         {
             transform.Rotate(Vector3.up,15, Space.World);
         }

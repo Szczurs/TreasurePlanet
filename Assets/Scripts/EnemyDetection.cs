@@ -31,7 +31,8 @@ public class EnemyDetection : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(Vector3.Distance(transform.position, mainPlayer.position) < maxDistanceToDetectPlayer{
+        if(Vector3.Distance(transform.position, mainPlayer.position) < maxDistanceToDetectPlayer)
+        {
             if(Physics.Raycast(transform.position, (mainPlayer.position - transform.position), out hit,maxDistanceToDetectPlayer))
             {
                 if(hit.transform == mainPlayer)
