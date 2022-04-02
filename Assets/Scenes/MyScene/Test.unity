@@ -1429,6 +1429,8 @@ MonoBehaviour:
   target: {fileID: 1436341783}
   maxDistanceToDetectPlayer: 50
   rocketDamage: 10
+  turret: {fileID: 1170698883}
+  shootInterval: 5
 --- !u!4 &1934356648
 Transform:
   m_ObjectHideFlags: 0
