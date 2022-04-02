@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2089403990893811739}
   - component: {fileID: 2089403991056123793}
   - component: {fileID: -5821185801681786947}
-  - component: {fileID: 3766220538069324033}
   m_Layer: 8
   m_Name: PlayerShip 1
   m_TagString: Player
@@ -76,6 +75,9 @@ MonoBehaviour:
   Power: 5
   MaxSpeed: 10
   Drag: 1
+  rotationPivotForFrontElement: {fileID: 0}
+  maxRotationForFrontElement: 30
+  rotationSpeed: 2
 --- !u!54 &2089403990893811739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,19 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stability: 0.3
   speed: 2
---- !u!65 &3766220538069324033
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089403990893811740}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2089403991454412549
 GameObject:
   m_ObjectHideFlags: 0
