@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanonballHitDetector : MonoBehaviour
+public class CanonballHitDetectorEnemy : MonoBehaviour
 {
     public Transform mainPlayer;
     //public float raycastLength = 100f;
@@ -12,7 +12,7 @@ public class CanonballHitDetector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        mainPlayer = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame

@@ -283,6 +283,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2089403992214278017, guid: aa58ba32f86a1864eb99039234976395,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089403992214278017, guid: aa58ba32f86a1864eb99039234976395,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.48
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa58ba32f86a1864eb99039234976395, type: 3}
 --- !u!1 &358678681
@@ -332,6 +342,13 @@ MonoBehaviour:
   angleLimit: 68
   aimTolerance: 1
   turnSpeed: 90
+  range: 20
+--- !u!4 &609345452 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2089403992214278017, guid: aa58ba32f86a1864eb99039234976395,
+    type: 3}
+  m_PrefabInstance: {fileID: 121028088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &882562937
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,12 +614,12 @@ PrefabInstance:
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.39
+      value: -0.6300001
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.000012
+      value: 4.49
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
@@ -643,7 +660,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1436341783}
+      objectReference: {fileID: 609345452}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_LookAt
@@ -759,6 +776,7 @@ MonoBehaviour:
   angleLimit: 90
   aimTolerance: 1
   turnSpeed: 90
+  range: 20
 --- !u!1 &1094904703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,8 +1050,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735425932}
-  - component: {fileID: 1735425934}
   - component: {fileID: 1735425933}
+  - component: {fileID: 1735425934}
   m_Layer: 0
   m_Name: AA turret
   m_TagString: Untagged
@@ -1086,7 +1104,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1735425931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc81ccb5fd35a764da0782053a9aa830, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f0b528b287d9564d95ce820eaed2712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 1735425933}
@@ -1094,6 +1112,8 @@ MonoBehaviour:
   - {fileID: 1088960627}
   - {fileID: 358678683}
   target: {fileID: 1436341783}
+  distanceToTarget: 0
+  maxRange: 100
 --- !u!1 &1862803351
 GameObject:
   m_ObjectHideFlags: 0

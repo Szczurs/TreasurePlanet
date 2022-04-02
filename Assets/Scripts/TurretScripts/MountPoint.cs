@@ -10,12 +10,14 @@ public class MountPoint : MonoBehaviour
     public float aimTolerance = 1f;
     public float turnSpeed = 90f;
 
+    public float range = 20f;
+
     Transform turret;
 
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        var range = 20f;
+        //var range = 20f;
         var hardpoint = transform;
         var from = Quaternion.AngleAxis(-angleLimit / 2, hardpoint.up) * hardpoint.forward;
 
