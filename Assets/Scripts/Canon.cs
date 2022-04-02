@@ -11,6 +11,8 @@ public class Canon : MonoBehaviour
 
     public GameObject Cannonball;
 
+    public GameObject canon;
+
     public ParticleSystem PS_Smoke;
 
     public float Power = 12.0f;
@@ -28,14 +30,14 @@ public class Canon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.G))
+        if(Input.GetKeyUp(KeyCode.G))
         {
             ShootCannonBall();
         }
 
-        if(Input.GetKey(KeyCode.R))
+        if(Input.GetKeyUp(KeyCode.R))
         {
-            transform.Rotate(Vector3.up,15, Space.World);
+            canon.transform.Rotate(Vector3.up,15, Space.World);
         }
     }
 

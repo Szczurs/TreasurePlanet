@@ -28,6 +28,10 @@ public class BoatController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //transform.Rotate(0,transform.rotation)
+        //gameObject.transform.rotation.x = 0;
+        //transform.rotation.z = 0;
+
         var forceDirection = transform.forward;
         var steer = 0;
 

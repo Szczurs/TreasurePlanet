@@ -8,6 +8,8 @@ public class Turret : MonoBehaviour
     public MountPoint[] mountPoints;
     public Transform target;
 
+    public bool directTargetVisibility;
+
     public float distanceToTarget;
 
     public float maxRange = 100;
@@ -20,7 +22,7 @@ public class Turret : MonoBehaviour
         {
             if(Physics.Raycast(transform.position, (target.position - transform.position), out hit,maxRange))
             {
-                if(hit.transform == target)
+                if(hit.transform == target.transform)
                 {
                     //enemy can see the player
                     return true;
@@ -69,6 +71,7 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
+        directTargetVisibility = isDirectlyVisible();
         distanceToTarget = Vector3.Distance(target.position,transform.position);
 
         // do nothing when no target

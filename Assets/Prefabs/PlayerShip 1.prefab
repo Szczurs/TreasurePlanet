@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2089403990893811733}
   - component: {fileID: 2089403990893811739}
   - component: {fileID: 2089403991056123793}
+  - component: {fileID: -5821185801681786947}
+  - component: {fileID: 3766220538069324033}
   m_Layer: 8
   m_Name: PlayerShip 1
   m_TagString: Player
@@ -105,8 +107,36 @@ MonoBehaviour:
   CannonBall_Spawn: {fileID: 2089403991454412548}
   Cannonball: {fileID: 8909368265122155473, guid: 18488131b58886f4c8af832d1ee958aa,
     type: 3}
+  canon: {fileID: 0}
   PS_Smoke: {fileID: 0}
   Power: 120
+--- !u!114 &-5821185801681786947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089403990893811740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6bef4fef6ce4a4b8f04fc331f4bb6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stability: 0.3
+  speed: 2
+--- !u!65 &3766220538069324033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089403990893811740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2089403991454412549
 GameObject:
   m_ObjectHideFlags: 0
