@@ -6,7 +6,7 @@ using UnityEngine;
 public class BoatController : MonoBehaviour
 {
     //visible Properties
-
+    public float startElevation;
     public Transform Motor; //place motor game object
     public float SteerPower = 500f;
     public float Power = 5f;
@@ -21,6 +21,8 @@ public class BoatController : MonoBehaviour
 
     public float rotationSpeed = 2.0f;
 
+    public float levelingAltitudeSpeed = 1f;
+
     public int steer;
 
     public float currentRoll;
@@ -29,6 +31,9 @@ public class BoatController : MonoBehaviour
     public float currentPitch;
 
     public float maxNeutralAngle = 1f;
+
+    private float angleOffset = 5f; //offset to stabilize ship
+
     
 
 
@@ -36,7 +41,7 @@ public class BoatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //startElevation = transform.position.y;
     }
 
     public void Awake()
@@ -79,6 +84,29 @@ public class BoatController : MonoBehaviour
         currentRoll = transform.localRotation.eulerAngles.z;
         currentPitch = transform.localRotation.eulerAngles.x;
         
+         //X axis stabilization
+
+        if(currentPitch > maxNeutralAngle && (currentPitch < (360 - maxNeutralAngle)))
+        {
+            transform.Rotate(Vector3.right * -2 * (rotationSpeed * Time.deltaTime));
+        }
+        else
+        {
+            if(currentPitch > (360 - maxNeutralAngle))
+            {
+                transform.Rotate(Vector3.right * 2 * (rotationSpeed * Time.deltaTime));
+            }
+            
+        }
+
+        //keep constant elevation
+
+        if(Mathf.Abs(transform.position.y - startElevation) > 0.01f)
+        {
+            //transform.position = (transform.position).normalized * levelingAltitudeSpeed * Time.deltaTime;
+            transform.position = new Vector3 (transform.position.x, startElevation, transform.position.z);
+        }
+
         if (steer == 0)
         {
             if (frontElementRotation > maxNeutralAngle && frontElementRotation < (360f - maxNeutralAngle))
@@ -96,34 +124,20 @@ public class BoatController : MonoBehaviour
                     
                 }
 
-                if(currentRoll < (360f - maxNeutralAngle) && currentRoll > maxRoll){
+                if(currentRoll < (360f - maxNeutralAngle) && currentRoll > maxRoll + angleOffset)
+                {
                         transform.Rotate(Vector3.forward * 2 * (rotationSpeed * Time.deltaTime));
                         //Debug.Log("U");
                         //Debug.Log("D");
-                    }
-                    else
-                    {
-                        //roll is on 0-maxRoll
-                        if(currentRoll > maxNeutralAngle)
-                        { 
-                            transform.Rotate(Vector3.forward * -2 * (rotationSpeed * Time.deltaTime));
-                            //Debug.Log("U");
-                        }
-                    }
-
-                //X axis stabilization
-
-                if(currentPitch > maxNeutralAngle && (currentPitch < (360 - maxNeutralAngle)))
-                {
-                    transform.Rotate(Vector3.right * -2 * (rotationSpeed * Time.deltaTime));
                 }
                 else
                 {
-                    if(currentPitch > (360 - maxNeutralAngle))
-                    {
-                        transform.Rotate(Vector3.right * 2 * (rotationSpeed * Time.deltaTime));
+                    //roll is on 0-maxRoll
+                    if(currentRoll > maxNeutralAngle)
+                    { 
+                        transform.Rotate(Vector3.forward * -2 * (rotationSpeed * Time.deltaTime));
+                        //Debug.Log("U");
                     }
-                  
                 }
             }
 

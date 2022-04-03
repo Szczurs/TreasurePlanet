@@ -35,11 +35,11 @@ public class Canon : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.Q)){
-            leftSideCanonActive = false;
+            leftSideCanonActive = true;
         }
 
         if(Input.GetKeyUp(KeyCode.E)){
-            leftSideCanonActive = true;
+            leftSideCanonActive = false;
         }
 
         if(Input.GetKeyUp(KeyCode.G))
@@ -58,26 +58,38 @@ public class Canon : MonoBehaviour
         List<Transform> activeCannonList = null;
         if(leftSideCanonActive == true)
         {
-            activeCannonList = CannonBallLeftSpawns;
+            foreach(var CannonBallSpawn in CannonballLeftSpawns)
+            {
+            GameObject cannonball = Instantiate(Cannonball, CannonBallSpawn.position, Quaternion.identity);
+            Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+
+            rb.velocity = Power * CannonBallSpawn.forward;
+
+            StartCoroutine(RemoveCannonBall_Rigidody(rb, 3.0f));
+
+            _animator.SetTrigger("tr_shoot");
+
+            PS_Smoke.Play();
+            }
         }
         else
         {
-            activeCannonList = CannonBallRightSpawns;
+           foreach(var CannonBallSpawn in CannonballRightSpawns)
+            {
+            GameObject cannonball = Instantiate(Cannonball, CannonBallSpawn.position, Quaternion.identity);
+            Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+
+            rb.velocity = Power * CannonBallSpawn.forward;
+
+            StartCoroutine(RemoveCannonBall_Rigidody(rb, 3.0f));
+
+            _animator.SetTrigger("tr_shoot");
+
+            PS_Smoke.Play();
+            }
         }
 
-        foreach(var CannonBallSpawn in activeCannonList)
-        {
-        GameObject cannonball = Instantiate(Cannonball, CannonBallSpawn.position, Quaternion.identity);
-        Rigidbody rb = cannonball.AddComponent<Rigidbody>();
-
-        rb.velocity = Power * CannonBallSpawn.forward;
-
-        StartCoroutine(RemoveCannonBall_Rigidody(rb, 3.0f));
-
-        _animator.SetTrigger("tr_shoot");
-
-        PS_Smoke.Play();
-        }
+       
 
     }
 
