@@ -37,8 +37,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Player
   m_SortingLayers:
   - name: Background
     uniqueID: 788040023

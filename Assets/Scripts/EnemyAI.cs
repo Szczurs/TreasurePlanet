@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,13 +23,24 @@ public class EnemyAI : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
+    public float powerOfProjectile = 120;
+
+    public Transform gunPoint;
+
+    private bool canShoot = true;
+
+    public int shootInterval = 5;
+
+
+
+
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -82,15 +94,44 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
+           
+        }
+            /*
+            GameObject cannonball = Instantiate(shotPrefab, gunPoint.position, Quaternion.identity);
+        Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+
+        //Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);
+        
+        //Rigidbody rb = shotPrefab.GetComponent<Rigidbody>();
+
+*/
             ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            /*
+            GameObject cannonball = Instantiate(projectile, transform.position, Quaternion.identity);
+
+            Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+
+            
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ///End of attack code
-
-            alreadyAttacked = true;
+            
+            */
+            if(canShoot == true){
+            StartCoroutine(shootWait());
+      
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+     void SpawnShot() {
+        GameObject cannonball = Instantiate(projectile, gunPoint.position, Quaternion.identity);
+        Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+
+        //Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);
+        
+        //Rigidbody rb = shotPrefab.GetComponent<Rigidbody>();
+
+        cannonball.GetComponent<Rigidbody>().velocity = powerOfProjectile * gunPoint.forward;
     }
     private void ResetAttack()
     {
@@ -114,5 +155,14 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public IEnumerator shootWait() {
+        {
+            canShoot = false;
+            yield return new WaitForSeconds(shootInterval);
+            SpawnShot();
+            canShoot = true;
+        }
     }
 }

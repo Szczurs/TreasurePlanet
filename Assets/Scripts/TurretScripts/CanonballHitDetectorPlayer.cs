@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanonballHitDetectorPlayer : MonoBehaviour
 {
-    public Transform mainPlayer;
+    public Transform enemy;
     //public float raycastLength = 100f;
     public float distanceToTarget;
 
@@ -12,7 +12,7 @@ public class CanonballHitDetectorPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainPlayer = GameObject.FindWithTag("Enemy").transform;
+        enemy = GameObject.FindWithTag("Enemy").transform;
     }
 
     // Update is called once per frame
@@ -31,21 +31,21 @@ public class CanonballHitDetectorPlayer : MonoBehaviour
         RaycastHit hit;
         */
 
-        distanceToTarget = Vector3.Distance(mainPlayer.position, transform.position);
+        distanceToTarget = Vector3.Distance(enemy.position, transform.position);
         if(distanceToTarget < proximityFuseExplosion)
         {
             Debug.Log("Player hit proximity fuse");
-            mainPlayer.GetComponent<EnemyHealth>().dealDamage(1);
+            enemy.GetComponent<EnemyHealth>().dealDamage(1);
             Destroy(gameObject);
         }
 
         RaycastHit hit;
 
-        if(Vector3.Distance(transform.position, mainPlayer.position) < proximityFuseExplosion)
+        if(Vector3.Distance(transform.position, enemy.position) < proximityFuseExplosion)
         {
-            if(Physics.Raycast(transform.position, (mainPlayer.position - transform.position), out hit, proximityFuseExplosion))
+            if(Physics.Raycast(transform.position, (enemy.position - transform.position), out hit, proximityFuseExplosion))
             {
-                if(hit.transform == mainPlayer)
+                if(hit.transform == enemy)
                 {
                     //enemy can see the player
                     //return true;

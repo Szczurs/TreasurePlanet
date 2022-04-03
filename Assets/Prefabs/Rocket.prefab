@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 7800097836170036759}
   - component: {fileID: 6488592191505350993}
   - component: {fileID: 5457891249611846066}
+  - component: {fileID: -688843889527129570}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -401,6 +402,19 @@ MonoBehaviour:
   distanceToTarget: 0
   damage: 10
   proximityFuseExplosion: 10
+--- !u!114 &-688843889527129570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080172029715309702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b380e000f582fb74e9dce13e3c22e82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 10
 --- !u!1 &7416339768480288080
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,15 @@ public class BoatController : MonoBehaviour
 
     public int steer;
 
+    public float currentRoll;
+
+    public float maxRoll = 15f;
+    public float currentPitch;
+
+    public float maxNeutralAngle = 1f;
+    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,47 +76,89 @@ public class BoatController : MonoBehaviour
         #region Apply front element rotation
 
         frontElementRotation = rotationPivotForFrontElement.localRotation.eulerAngles.y;
-
+        currentRoll = transform.localRotation.eulerAngles.z;
+        currentPitch = transform.localRotation.eulerAngles.x;
         
         if (steer == 0)
         {
-
-            if (frontElementRotation > 1f && frontElementRotation < 359f)
+            if (frontElementRotation > maxNeutralAngle && frontElementRotation < (360f - maxNeutralAngle))
             {
                 if (frontElementRotation < 180f)
                 {
                     rotationPivotForFrontElement.Rotate(Vector3.up * -2 * (rotationSpeed * Time.deltaTime));
-                    //Debug.Log("D");
                 }
 
                 else
                 {
+                    //turn left
                     rotationPivotForFrontElement.Rotate(Vector3.up * 2 * (rotationSpeed * Time.deltaTime));
-                    //Debug.Log("U");
+                    
+                    
+                }
+
+                if(currentRoll < (360f - maxNeutralAngle) && currentRoll > maxRoll){
+                        transform.Rotate(Vector3.forward * 2 * (rotationSpeed * Time.deltaTime));
+                        //Debug.Log("U");
+                        //Debug.Log("D");
+                    }
+                    else
+                    {
+                        //roll is on 0-maxRoll
+                        if(currentRoll > maxNeutralAngle)
+                        { 
+                            transform.Rotate(Vector3.forward * -2 * (rotationSpeed * Time.deltaTime));
+                            //Debug.Log("U");
+                        }
+                    }
+
+                //X axis stabilization
+
+                if(currentPitch > maxNeutralAngle && (currentPitch < (360 - maxNeutralAngle)))
+                {
+                    transform.Rotate(Vector3.right * -2 * (rotationSpeed * Time.deltaTime));
+                }
+                else
+                {
+                    if(currentPitch > (360 - maxNeutralAngle))
+                    {
+                        transform.Rotate(Vector3.right * 2 * (rotationSpeed * Time.deltaTime));
+                    }
+                  
                 }
             }
 
         }
         else
         {
+            //turn left
             if(frontElementRotation > 180)
             {
                 if(360 - maxRotationForFrontElement < frontElementRotation)
                 {
                     rotationPivotForFrontElement.Rotate(Vector3.up * -steer * (rotationSpeed * Time.deltaTime));
+                    if(currentRoll > (360 - maxRoll) || currentRoll < maxRoll) //apply max roll
+                    {
+                        transform.Rotate(Vector3.forward * steer * (rotationSpeed * Time.deltaTime));
+                    }
                 }
             }
             else
             {
+                //turn right
                 if(frontElementRotation < maxRotationForFrontElement)
                 {
                     rotationPivotForFrontElement.Rotate(Vector3.up * -steer * (rotationSpeed * Time.deltaTime));
+                    if(currentRoll > (360 - maxRoll) || currentRoll < maxRoll) //apply max roll
+                    {
+                        transform.Rotate(Vector3.forward * steer * (rotationSpeed * Time.deltaTime));
+                    }
                 }
             }
             
         }
 
         #endregion
+
 
         //compute vectors
         var forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);

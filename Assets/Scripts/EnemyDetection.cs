@@ -30,15 +30,16 @@ public class EnemyDetection : MonoBehaviour
     bool isDirectlyVisible()
     {
         RaycastHit hit;
-
-        if(Vector3.Distance(transform.position, mainPlayer.position) < maxDistanceToDetectPlayer)
-        {
-            if(Physics.Raycast(transform.position, (mainPlayer.position - transform.position), out hit,maxDistanceToDetectPlayer))
+        if(mainPlayer != null){
+            if(Vector3.Distance(transform.position, mainPlayer.position) < maxDistanceToDetectPlayer)
             {
-                if(hit.transform == mainPlayer)
+                if(Physics.Raycast(transform.position, (mainPlayer.position - transform.position), out hit,maxDistanceToDetectPlayer))
                 {
-                    //enemy can see the player
-                    return true;
+                    if(hit.transform == mainPlayer)
+                    {
+                        //enemy can see the player
+                        return true;
+                    }
                 }
             }
         }
