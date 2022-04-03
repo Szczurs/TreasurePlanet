@@ -13,7 +13,7 @@ public class CameraMagic : MonoBehaviour
     void Update()
     {
         yaw += speedH * Input.GetAxis("Mouse X");
-        //pitch -= speedH * Input.GetAxis("Mouse y");
+        pitch -= speedH * Input.GetAxis("Mouse Y");
 
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }

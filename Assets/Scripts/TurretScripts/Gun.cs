@@ -42,14 +42,19 @@ public class Gun : MonoBehaviour
     {
         var gunPoint = gunPoints[gunPointIndex++];
         gunPointIndex %= gunPoints.Length;
-        GameObject cannonball = Instantiate(shotPrefab, gunPoint.position, Quaternion.identity);
+        //GameObject cannonball = Instantiate(shotPrefab, gunPoint.position, Quaternion.identity);
+        //Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+        /*
+        GameObject cannonball = Instantiate(Cannonball, CannonBallSpawn.position, Quaternion.identity);
         Rigidbody rb = cannonball.AddComponent<Rigidbody>();
 
-        //Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);
-        
+        rb.velocity = Power * CannonBallSpawn.forward;
+        */
+        GameObject canonball = Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);
+        canonball.GetComponent<Rigidbody>().velocity = Power * gunPoint.forward;
         //Rigidbody rb = shotPrefab.GetComponent<Rigidbody>();
-
-        rb.velocity = Power * gunPoint.forward;
+        //shotPrefab.GetComponent<Rigidbody>().velocity = Power * gunPoint.forward;
+        //rb.velocity = Power * gunPoint.forward;
     }
 
     public void Fire()
