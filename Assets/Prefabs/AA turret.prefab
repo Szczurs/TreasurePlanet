@@ -71,7 +71,7 @@ MonoBehaviour:
   mountPoints:
   - {fileID: 2890173778652972257}
   - {fileID: 2890173779903478793}
-  target: {fileID: 7846448975600471497, guid: 2fbab3a97a6250a418d4c76d043b4f85, type: 3}
+  target: {fileID: 0}
   directTargetVisibility: 0
   distanceToTarget: 0
   maxRange: 100
