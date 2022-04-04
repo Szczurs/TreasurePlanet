@@ -94,7 +94,12 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-           
+           if(canShoot == true){
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            StartCoroutine(shootWait());
+            
+            
         }
             /*
             GameObject cannonball = Instantiate(shotPrefab, gunPoint.position, Quaternion.identity);
@@ -116,16 +121,13 @@ public class EnemyAI : MonoBehaviour
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             
             */
-            if(canShoot == true){
-            StartCoroutine(shootWait());
-      
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
     }
 
      void SpawnShot() {
         GameObject cannonball = Instantiate(projectile, gunPoint.position, Quaternion.identity);
-        Rigidbody rb = cannonball.AddComponent<Rigidbody>();
+        //Rigidbody rb = cannonball.AddComponent<Rigidbody>();
 
         //Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);
         
