@@ -141,7 +141,6 @@ public class BoatController : MonoBehaviour
                     }
                 }
             }
-
         }
         else
         {
@@ -169,7 +168,6 @@ public class BoatController : MonoBehaviour
                     }
                 }
             }
-            
         }
 
         #endregion
