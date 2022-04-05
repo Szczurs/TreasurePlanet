@@ -179,7 +179,7 @@ public class BoatController : MonoBehaviour
         var forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
 
         //Rotational force 
-        GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * steerPower * (forward.magnitude / maxSpeed) / 100f, motor.position);
+        GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * steerPower * (forward.magnitude / maxSpeed), motor.position);
         //GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * SteerPower / 100f, Motor.position);
         var targetVel = Vector3.zero;
 
