@@ -389,12 +389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583274b68bb6d524c94618beff172593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startElevation: 6.3
-  Motor: {fileID: 9080138004636157463}
-  SteerPower: 5000
-  Power: 10
-  MaxSpeed: 10
-  Drag: 1
+  startElevation: 10
+  motor: {fileID: 9080138004636157463}
+  steerPower: 500
+  engineForwadThrustPower: 5
+  engineReverseThrustPowerInPercent: 20
+  maxSpeed: 10
+  drag: 0.1
   rotationPivotForFrontElement: {fileID: 8078087849498421899}
   maxRotationForFrontElement: 30
   frontElementRotation: 0
@@ -486,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0699a2b0a11defc41b2243c54f970574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 1000
 --- !u!114 &8078087848378123211
 MonoBehaviour:
   m_ObjectHideFlags: 0
