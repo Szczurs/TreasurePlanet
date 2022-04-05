@@ -29,15 +29,12 @@ public class BoatController : MonoBehaviour
     public float currentRoll;
 
     public float maxRoll = 15f;
+
     public float currentPitch;
 
     public float maxNeutralAngle = 1f;
 
     private float angleOffset = 5f; //offset to stabilize ship
-
-    
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -127,9 +124,9 @@ public class BoatController : MonoBehaviour
 
                 if(currentRoll < (360f - maxNeutralAngle) && currentRoll > maxRoll + angleOffset)
                 {
-                        transform.Rotate(Vector3.forward * 2 * (rotationSpeed * Time.deltaTime));
-                        //Debug.Log("U");
-                        //Debug.Log("D");
+                    transform.Rotate(Vector3.forward * 2 * (rotationSpeed * Time.deltaTime));
+                    //Debug.Log("U");
+                    //Debug.Log("D");
                 }
                 else
                 {

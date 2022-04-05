@@ -9,11 +9,25 @@ public class CanonballHitDetectorPlayer : MonoBehaviour
     public float distanceToTarget;
 
     public float proximityFuseExplosion = 10f;
+
+    public int damage = 10;
+
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GameObject.FindWithTag("Enemy").transform;
+        //enemy = GameObject.FindWithTag("Enemy").transform;
     }
+
+    void OnTriggerEnter(Collider hitInfo)
+    {
+        EnemyHealth enemy = hitInfo.GetComponent<EnemyHealth>();
+        if (enemy != null)
+        {
+            enemy.dealDamage(damage);
+        }
+        Destroy(gameObject);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -31,6 +45,7 @@ public class CanonballHitDetectorPlayer : MonoBehaviour
         RaycastHit hit;
         */
 
+        /*
         distanceToTarget = Vector3.Distance(enemy.position, transform.position);
         if(distanceToTarget < proximityFuseExplosion)
         {
@@ -54,5 +69,6 @@ public class CanonballHitDetectorPlayer : MonoBehaviour
             }
         }
         //return false;
+        */
     }
 }
