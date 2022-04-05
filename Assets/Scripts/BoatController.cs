@@ -7,11 +7,12 @@ public class BoatController : MonoBehaviour
 {
     //visible Properties
     public float startElevation;
-    public Transform Motor; //place motor game object
-    public float SteerPower = 500f;
-    public float Power = 5f;
-    public float MaxSpeed = 10f;
-    public float Drag = 0.1f;
+    public Transform motor; //place motor game object
+    public float steerPower = 500f;
+    public float engineForwadThrustPower = 5f;
+    public float engineReverseThrustPowerInPercent = 20f; //Default 20% of forward thrust
+    public float maxSpeed = 10f;
+    public float drag = 0.1f;
 
     public Transform rotationPivotForFrontElement;
 
@@ -47,7 +48,7 @@ public class BoatController : MonoBehaviour
     public void Awake()
     {
         Rigidbody rigidbody = GetComponent<Rigidbody>();
-        transform.rotation = Motor.localRotation;
+        transform.rotation = motor.localRotation;
     }
 
     // Update is called once per frame
@@ -178,18 +179,18 @@ public class BoatController : MonoBehaviour
         var forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
 
         //Rotational force 
-        GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * SteerPower * (forward.magnitude / MaxSpeed) / 100f, Motor.position);
+        GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * steerPower * (forward.magnitude / maxSpeed) / 100f, motor.position);
         //GetComponent<Rigidbody>().AddForceAtPosition(steer * transform.right * SteerPower / 100f, Motor.position);
         var targetVel = Vector3.zero;
 
         //forward/backward movement
         if (Input.GetKey(KeyCode.W))
         {
-            PhysicsHelper.ApplyForceToReachVelocity(GetComponent<Rigidbody>(), forward * MaxSpeed, Power);
+            PhysicsHelper.ApplyForceToReachVelocity(GetComponent<Rigidbody>(), forward * maxSpeed, engineForwadThrustPower);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            PhysicsHelper.ApplyForceToReachVelocity(GetComponent<Rigidbody>(), forward * -MaxSpeed, Power);
+            PhysicsHelper.ApplyForceToReachVelocity(GetComponent<Rigidbody>(), forward * -maxSpeed, engineForwadThrustPower * (engineReverseThrustPowerInPercent/100f));
         }
     }
 }

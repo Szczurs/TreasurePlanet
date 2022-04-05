@@ -101,7 +101,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   health: 2.63
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
+  walkPointRange: 50
   timeBetweenAttacks: 5
   projectile: {fileID: 8909368265122155473, guid: 18488131b58886f4c8af832d1ee958aa,
     type: 3}
