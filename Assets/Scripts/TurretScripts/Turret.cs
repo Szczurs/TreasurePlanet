@@ -65,8 +65,9 @@ public class Turret : MonoBehaviour
                 Handles.DrawWireArc(hardpoint.position, hardpoint.up, from, mountPoint.angleLimit, projection.magnitude);
                 Handles.DrawSolidDisc(hardpoint.position + projection, hardpoint.up, .5f);
             }
-#endif
+
         }
+        #endif
     }
 
     void Update()
